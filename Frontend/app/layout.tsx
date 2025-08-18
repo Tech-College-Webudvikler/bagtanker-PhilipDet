@@ -1,6 +1,7 @@
 import { ThemeProvider } from "next-themes";
 import { UserProvider } from "@/context/userProvider";
 import "./globals.css";
+import { LayoutWrapper } from "@/components/layoutWrapper";
 
 export default function RootLayout({
     children,
@@ -15,7 +16,9 @@ export default function RootLayout({
                     defaultTheme="system"
                     enableSystem
                 >
-                    <UserProvider>{children}</UserProvider>
+                    <UserProvider>
+                        <LayoutWrapper>{children}</LayoutWrapper>
+                    </UserProvider>
                 </ThemeProvider>
             </body>
         </html>
