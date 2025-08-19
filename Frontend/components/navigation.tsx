@@ -10,7 +10,7 @@ export const Navigation = ({
     const { user } = useUser();
 
     return (
-        <nav className="fixed inset-0 bg-dark-grey flex flex-col items-center py-14 pl-20 pr-11">
+        <nav className="z-[999] fixed inset-0 bg-dark-grey flex flex-col items-center py-14 pl-20 pr-11">
             <ul className="w-full flex flex-col gap-7">
                 <li className="self-end">
                     <button
@@ -21,32 +21,41 @@ export const Navigation = ({
                     </button>
                 </li>
                 <li>
-                    <Link className="navigation-text" href="/">
+                    <Link className="navigation-text" href="/" replace>
                         Forside
                     </Link>
                 </li>
                 <li>
-                    <Link className="navigation-text" href="/products">
+                    <Link
+                        className="navigation-text"
+                        href="/products"
+                        replace
+                        prefetch
+                    >
                         Produkter
                     </Link>
                 </li>
                 <li>
-                    <Link className="navigation-text" href="/news">
+                    <Link className="navigation-text" href="/news" replace>
                         Nyheder
                     </Link>
                 </li>
                 <li>
-                    <Link className="navigation-text" href="/contact">
+                    <Link className="navigation-text" href="/contact" replace>
                         Kontakt
                     </Link>
                 </li>
                 <li>
                     {user ? (
-                        <Link className="navigation-text" href="/dashboard">
+                        <Link
+                            className="navigation-text"
+                            href="/dashboard"
+                            replace
+                        >
                             Profil
                         </Link>
                     ) : (
-                        <Link className="navigation-text" href="/login">
+                        <Link className="navigation-text" href="/login" replace>
                             Login
                         </Link>
                     )}

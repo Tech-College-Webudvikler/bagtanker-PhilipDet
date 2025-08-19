@@ -6,6 +6,9 @@ export const getUsers = async (id?: number) => {
     if (id) {
         const result = await prisma.user.findUnique({
             where: { id },
+            include: {
+                favorites: true,
+            },
         });
 
         if (!result) return null;
@@ -15,6 +18,7 @@ export const getUsers = async (id?: number) => {
             name: result.name,
             email: result.email,
             description: result.description,
+            favorites: result.favorites.map((fav) => fav.productId),
         };
     } else {
         const result = await prisma.user.findMany();

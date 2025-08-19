@@ -1,20 +1,24 @@
 "use client";
 
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Menu } from "lucide-react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useUser } from "@/context/userProvider";
 import { Navigation } from "./navigation";
+import { usePathname } from "next/navigation";
 
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { user } = useUser();
+    const pathname = usePathname();
+
+    useEffect(() => {
+        setIsMenuOpen(false);
+    }, [pathname]);
 
     return (
         <>
             <header
-                className="bg-center bg-cover py-7 px-11"
+                className="w-full bg-center bg-cover py-7 px-11"
                 style={{
                     backgroundImage:
                         "url('/assets/images/slides/bread-slidebg-01.jpg')",

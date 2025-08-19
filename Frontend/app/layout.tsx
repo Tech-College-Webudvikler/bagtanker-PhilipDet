@@ -1,7 +1,11 @@
 import { ThemeProvider } from "next-themes";
 import { UserProvider } from "@/context/userProvider";
 import "./globals.css";
+import { Header } from "@/components/header";
+import { CategoriesHeader } from "@/components/categoriesHeader";
+import { ShowIfNotOnRoot } from "@/components/showIfNotOnRoot";
 import { LayoutWrapper } from "@/components/layoutWrapper";
+import { GeneralProvider } from "@/context/generalProvider";
 
 export default function RootLayout({
     children,
@@ -10,15 +14,21 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body>
+            <body className="min-h-screen flex flex-col items-center">
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"
                     enableSystem
                 >
-                    <UserProvider>
-                        <LayoutWrapper>{children}</LayoutWrapper>
-                    </UserProvider>
+                    <GeneralProvider>
+                        <UserProvider>
+                            <Header />
+                            <ShowIfNotOnRoot>
+                                <CategoriesHeader />
+                            </ShowIfNotOnRoot>
+                            <LayoutWrapper>{children}</LayoutWrapper>
+                        </UserProvider>
+                    </GeneralProvider>
                 </ThemeProvider>
             </body>
         </html>
