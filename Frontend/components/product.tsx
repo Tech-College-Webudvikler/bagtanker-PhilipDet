@@ -68,7 +68,7 @@ export const ProductItem = ({ product }: { product: ProductType }) => {
                             className="cursor-pointer"
                         >
                             <Heart
-                                className={cn("heart", {
+                                className={cn("heart-grey", {
                                     active: alreadyFavorited,
                                 })}
                             />

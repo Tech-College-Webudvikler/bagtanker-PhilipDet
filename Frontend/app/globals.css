@@ -82,13 +82,22 @@
         @apply font-light text-lg;
     }
 
-    .heart {
+    .heart-grey {
         stroke: var(--dark-grey);
     }
 
-    .heart.active {
+    .heart-grey.active {
         fill: var(--dark-grey);
         stroke: var(--dark-grey);
+    }
+
+    .heart-white {
+        stroke: #ffffff;
+    }
+
+    .heart-white.active {
+        fill: #ffffff;
+        stroke: #ffffff;
     }
 }
 

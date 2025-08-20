@@ -3,18 +3,17 @@
 import { getProduct } from "@/lib/services/products";
 import { useEffect, useState } from "react";
 import { ProductType } from "@/lib/types";
+import { RecipeList } from "@/components/recipeList";
 
 const ProductView = ({ params }: { params: Promise<{ id: number }> }) => {
     const [id, setId] = useState<number | null>(null);
     const [product, setProduct] = useState<ProductType | null>(null);
 
     useEffect(() => {
-        params.then((p) => setId(p.id));
+        params.then((p) => setId(Number(p.id)));
     }, [params]);
 
     useEffect(() => {
-        console.log(id);
-
         const fetchProduct = async () => {
             if (id === null) return;
 
@@ -30,6 +29,15 @@ const ProductView = ({ params }: { params: Promise<{ id: number }> }) => {
 
     return (
         <div>
+            {product && (
+                <RecipeList
+                    productId={product.id}
+                    durationInMinutes={product?.durationInMinutes ?? null}
+                    amount={product?.amount ?? null}
+                    items={product?.productIngredients ?? []}
+                    likes={product?.likes ?? null}
+                />
+            )}
             <pre>{JSON.stringify(product, null, 2)}</pre>
         </div>
     );
