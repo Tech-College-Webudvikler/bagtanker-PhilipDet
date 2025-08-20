@@ -13,6 +13,8 @@ const ProductView = ({ params }: { params: Promise<{ id: number }> }) => {
     }, [params]);
 
     useEffect(() => {
+        console.log(id);
+
         const fetchProduct = async () => {
             if (id === null) return;
 

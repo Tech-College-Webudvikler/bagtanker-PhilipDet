@@ -6,6 +6,7 @@ import { CategoriesHeader } from "@/components/categoriesHeader";
 import { ShowIfNotOnRoot } from "@/components/showIfNotOnRoot";
 import { LayoutWrapper } from "@/components/layoutWrapper";
 import { GeneralProvider } from "@/context/generalProvider";
+import { Footer } from "@/components/footer";
 
 export default function RootLayout({
     children,
@@ -27,6 +28,7 @@ export default function RootLayout({
                                 <CategoriesHeader />
                             </ShowIfNotOnRoot>
                             <LayoutWrapper>{children}</LayoutWrapper>
+                            <Footer />
                         </UserProvider>
                     </GeneralProvider>
                 </ThemeProvider>

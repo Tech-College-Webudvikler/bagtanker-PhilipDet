@@ -1,13 +1,19 @@
 @import "tailwindcss";
 
 @font-face {
+    font-family: "Open Sans";
+    src: url("/assets/fonts/OpenSans-VariableFont_wdth_wght.ttf")
+        format("truetype");
+}
+
+@font-face {
     font-family: "Open Sans Hebrew";
     src: url("/assets/fonts/Open-Sans-Hebrew-Condensed.ttf") format("truetype");
 }
 
 :root {
     --background: #ffffff;
-    --muted-background: #e4e4e4;
+    --muted-background: #ececec;
     --foreground: #000000;
     --muted-foreground: #666666;
 
@@ -46,6 +52,7 @@
     --color-light-grey: var(--light-grey);
     --color-rose-quartz: var(--rose-quartz);
 
+    --font-Sans: "Open Sans", sans-serif;
     --font-Hebrew: "Open Sans Hebrew", sans-serif;
 }
 
@@ -62,12 +69,33 @@
     .navigation-text {
         @apply text-xl text-background hover:text-rose-quartz;
     }
+
+    .primary-input {
+        @apply py-3.5 px-6 bg-muted-background text-muted-foreground font-light text-lg rounded-lg inset-shadow-sm;
+    }
+
+    .form-button {
+        @apply self-end py-2 px-14 bg-blue-grey font-light text-white rounded-sm text-lg cursor-pointer hover:bg-dark-grey transition-colors duration-200;
+    }
+
+    .subtitle {
+        @apply font-light text-lg;
+    }
+
+    .heart {
+        stroke: var(--dark-grey);
+    }
+
+    .heart.active {
+        fill: var(--dark-grey);
+        stroke: var(--dark-grey);
+    }
 }
 
 body {
     background: var(--background);
     color: var(--foreground);
-    font-family: "Open Sans", sans-serif;
+    font-family: var(--font-Sans);
 }
 
 h1 {
@@ -75,26 +103,11 @@ h1 {
 }
 
 h2 {
-    @apply text-[28px];
+    @apply text-[28px] font-bold;
 }
 
 p {
     @apply text-[22px] font-light;
-}
-
-h1,
-h2,
-p {
-    @apply text-dark-grey;
-}
-
-.heart {
-    stroke: var(--dark-grey);
-}
-
-.heart.active {
-    fill: var(--dark-grey);
-    stroke: var(--dark-grey);
 }
 
 input:focus,

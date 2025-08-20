@@ -4,7 +4,7 @@ import { ProductType } from "@/lib/types";
 import Image from "next/image";
 import { Heart } from "lucide-react";
 import { useUser } from "@/context/userProvider";
-import { createFavoriteAction, deleteFavoriteAction } from "@/lib/actions";
+import { createFavorite, deleteFavorite } from "@/lib/services/favorites";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -18,13 +18,13 @@ export const ProductItem = ({ product }: { product: ProductType }) => {
         if (!user) return;
 
         if (alreadyFavorited) {
-            const result = await deleteFavoriteAction(user.id, product.id);
+            const result = await deleteFavorite(user.id, product.id);
             if (result) {
                 setLikes(likes - 1);
                 setAlreadyFavorited(false);
             }
         } else {
-            const result = await createFavoriteAction(user.id, product.id);
+            const result = await createFavorite(user.id, product.id);
             if (result) {
                 setLikes(likes + 1);
                 setAlreadyFavorited(true);
