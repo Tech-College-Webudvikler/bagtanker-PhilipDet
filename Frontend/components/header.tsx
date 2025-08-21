@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Navigation } from "./navigation";
 import { usePathname } from "next/navigation";
 
-export const Header = () => {
+export const Header = ({ background }: { background?: boolean }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
 
@@ -18,13 +18,17 @@ export const Header = () => {
     return (
         <>
             <header
-                className="w-full bg-center bg-cover py-7 px-11"
-                style={{
-                    backgroundImage:
-                        "url('/assets/images/slides/bread-slidebg-01.jpg')",
-                }}
+                className="z-50 w-full bg-center bg-cover py-7 px-11"
+                style={
+                    background
+                        ? {
+                              backgroundImage:
+                                  "url('/assets/images/slides/bread-slidebg-01.jpg')",
+                          }
+                        : undefined
+                }
             >
-                <ul className="flex justify-between items-center">
+                <ul className="w-full flex justify-between items-center">
                     <li>
                         <Link href="/">
                             <Image
@@ -45,7 +49,6 @@ export const Header = () => {
                     </li>
                 </ul>
             </header>
-
             {isMenuOpen && <Navigation setIsMenuOpen={setIsMenuOpen} />}
         </>
     );

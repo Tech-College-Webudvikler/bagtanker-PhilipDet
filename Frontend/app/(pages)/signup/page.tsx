@@ -4,23 +4,37 @@ import { useUser } from "@/context/userProvider";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { validation } from "@/lib/utils";
 
 const SignUp = () => {
-    const { user, loading } = useUser();
+    const { user, loading, fetchUser } = useUser();
     const router = useRouter();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const name = formData.get("name");
-        const email = formData.get("email");
-        const password = formData.get("password");
-        const confirmPassword = formData.get("confirmPassword");
-
         setErrorMessage("");
         setSuccessMessage("");
+
+        if (!validation("name", name)) {
+            setErrorMessage("Udfyld venligst dit navn");
+            return;
+        }
+
+        if (!validation("email", email)) {
+            setErrorMessage("Udfyld venligst din email korrekt");
+            return;
+        }
+
+        if (!validation("password", password)) {
+            setErrorMessage("Udfyld venligst dit password");
+            return;
+        }
 
         const response = await fetch("/api/signup", {
             method: "POST",
@@ -34,7 +48,12 @@ const SignUp = () => {
 
         if (response.ok) {
             setSuccessMessage("Tilmelding succesfuld!");
+            setName("");
+            setEmail("");
+            setPassword("");
+            setConfirmPassword("");
             setTimeout(() => {
+                fetchUser();
                 router.push("/dashboard");
             }, 2000);
         } else {
@@ -51,9 +70,7 @@ const SignUp = () => {
     return (
         <div className="flex flex-col gap-6">
             <h1>Tilmelding</h1>
-            <p className="subtitle">
-                Indtast et navn, email og password for at tilmelde dig.
-            </p>
+            <p>Indtast et navn, email og password for at tilmelde dig.</p>
             <form
                 onSubmit={handleSubmit}
                 className="flex flex-col w-full lg:w-1/2 gap-4"
@@ -61,24 +78,32 @@ const SignUp = () => {
                 <input
                     type="text"
                     name="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     placeholder="Indtast dit Navn"
                     className="primary-input"
                 />
                 <input
                     type="text"
                     name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="Indtast din Email"
                     className="primary-input"
                 />
                 <input
                     type="password"
                     name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     placeholder="Indtast dit Password"
                     className="primary-input"
                 />
                 <input
                     type="password"
                     name="confirmPassword"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="Bekræft dit Password"
                     className="primary-input"
                 />

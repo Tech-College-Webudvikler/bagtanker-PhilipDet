@@ -1,12 +1,8 @@
 import { ThemeProvider } from "next-themes";
 import { UserProvider } from "@/context/userProvider";
 import "./globals.css";
-import { Header } from "@/components/header";
-import { CategoriesHeader } from "@/components/categoriesHeader";
-import { ShowIfNotOnRoot } from "@/components/showIfNotOnRoot";
-import { LayoutWrapper } from "@/components/layoutWrapper";
+import { ShowContent } from "@/components/showContent";
 import { GeneralProvider } from "@/context/generalProvider";
-import { Footer } from "@/components/footer";
 
 export default function RootLayout({
     children,
@@ -23,12 +19,7 @@ export default function RootLayout({
                 >
                     <GeneralProvider>
                         <UserProvider>
-                            <Header />
-                            <ShowIfNotOnRoot>
-                                <CategoriesHeader />
-                            </ShowIfNotOnRoot>
-                            <LayoutWrapper>{children}</LayoutWrapper>
-                            <Footer />
+                            <ShowContent>{children}</ShowContent>
                         </UserProvider>
                     </GeneralProvider>
                 </ThemeProvider>

@@ -3,7 +3,7 @@
 import { getProducts } from "@/lib/services/products";
 import { ProductType } from "@/lib/types";
 import { ProductItem } from "@/components/product";
-import React, { use, useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useGeneral } from "@/context/generalProvider";
 
 const ProductsPage = ({

@@ -78,10 +78,6 @@
         @apply self-end py-2 px-14 bg-blue-grey font-light text-white rounded-sm text-lg cursor-pointer hover:bg-dark-grey transition-colors duration-200;
     }
 
-    .subtitle {
-        @apply font-light text-lg;
-    }
-
     .heart-grey {
         stroke: var(--dark-grey);
     }
@@ -116,7 +112,7 @@ h2 {
 }
 
 p {
-    @apply text-[22px] font-light;
+    @apply text-lg font-light;
 }
 
 input:focus,
