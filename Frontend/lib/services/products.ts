@@ -40,6 +40,7 @@ export const getProduct = async (id?: number) => {
             user: {
                 id: review.user.id,
                 name: review.user.name,
+                image: review.user.image,
             },
         })),
         productIngredients: result.productIngredients.map((ing) => ({

@@ -61,11 +61,11 @@ export const RecipeList = ({
     };
 
     return (
-        <div className="rounded-lg overflow-hidden">
+        <div className="rounded-lg overflow-hidden flex-1 row-span-3 h-full flex flex-col">
             <ul className="bg-blue-grey flex justify-between items-center py-2 px-4">
                 <li className="text-2xl font-bold text-white">Opskrift</li>
                 <li className="font-light text-[16px] text-white flex items-center gap-2">
-                    <span>{likes}</span>
+                    <span>{recipeLikes}</span>
                     <button
                         onClick={() => handleLike()}
                         className="cursor-pointer"
@@ -78,7 +78,7 @@ export const RecipeList = ({
                     </button>
                 </li>
             </ul>
-            <ul className="bg-light-grey text-lg text-blue-grey font-light">
+            <ul className="bg-light-grey text-lg text-blue-grey font-light flex-1 flex flex-col">
                 <li className="py-2 px-4 bg-[#D7D7D2] border-b border-b-[#B1B1B1]">
                     Varighed: {formatDuration(durationInMinutes)}
                 </li>

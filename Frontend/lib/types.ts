@@ -81,3 +81,10 @@ export type CategoryType = {
     title: string;
     slug: string;
 };
+
+export type CommentType = {
+    id: number;
+    userId: number;
+    productId: number;
+    comment: string;
+};

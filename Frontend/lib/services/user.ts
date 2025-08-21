@@ -18,6 +18,7 @@ export const getUsers = async (id?: number) => {
             name: result.name,
             email: result.email,
             description: result.description,
+            image: result.image,
             favorites: result.favorites.map((fav) => fav.productId),
         };
     } else {
@@ -30,6 +31,7 @@ export const getUsers = async (id?: number) => {
             name: user.name,
             email: user.email,
             description: user.description,
+            image: user.image,
         }));
     }
 };
@@ -54,7 +56,7 @@ export const createUser = async (
                 email,
                 password: hashedPassword,
                 refreshToken: "",
-                image: "no-image.png",
+                image: "user.png",
             },
         });
 
